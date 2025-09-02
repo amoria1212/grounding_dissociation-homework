@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returning to Now: A Guide to Grounding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500;700&display=swap');
+        
+        /* Custom Brand Colors */
+        :root {
+            --deep-charcoal: #374151;
+            --dusty-background: #f4f0ed;
+            --pale-rose: #f0e8e6;
+            --light-gray-silver: #D1D5DB;
+            --dusty-rose: #D8A2A0;
+            --champagne-gold: #E6D8A2;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--dusty-background);
+            color: var(--deep-charcoal);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .section-header {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--light-gray-silver);
+            border-radius: 9999px;
+        }
+
+        .journal-box {
+            background-color: var(--pale-rose);
+            border-left: 4px solid var(--light-gray-silver);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .journal-input {
+            width: 100%;
+            min-height: 3rem;
+            border: 1px solid #d1d5db;
+            background-color: #fff;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        .journal-input:focus {
+            outline: none;
+            border-color: var(--light-gray-silver);
+            box-shadow: 0 0 0 3px rgba(209, 213, 219, 0.5);
+        }
+
+        .info-box {
+            background: #fdfae9;
+            border: 1px solid var(--champagne-gold);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .brand-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .brand-logo img {
+            height: 6rem;
+            width: auto;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 9999px;
+        }
+        
+        .brand-logo p {
+            color: var(--deep-charcoal);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-image {
+            height: 6rem;
+            width: auto;
+            max-width: 100%;
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .journal-box { background: #f9f9f9; }
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 my-8">
+        <!-- Logo and Branding -->
+        <header class="flex flex-col items-center mb-8 text-center">
+            <div class="mb-4">
+                <img src="https://i.imgur.com/JwAdvDd.png" alt="Janice LaFountaine, MS, LMFT Logo" class="h-24 w-auto rounded-full shadow-md">
+            </div>
+        </header>
+
+        <!-- Control Buttons -->
+        <div class="no-print flex flex-wrap gap-3 mb-6 justify-end">
+            <button onclick="shareHomework()" class="px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors text-sm font-medium btn">
+                🔗 Share
+            </button>
+            <button onclick="exportData()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium btn">
+                📤 Export Responses
+            </button>
+            <button onclick="clearData()" class="px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium btn">
+                🗑️ Clear All
+            </button>
+            <button onclick="window.print()" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-sm font-medium btn">
+                🖨️ Print
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold mb-4" style="color: var(--deep-charcoal);">Returning to Now: A Guide to Grounding</h1>
+            <p class="text-sm text-gray-500">Collaborating Wellness</p>
+        </header>
+
+        <!-- Introduction -->
+        <div class="info-box">
+            <h2 class="text-xl font-semibold mb-3">Understanding Dissociation and This Homework</h2>
+            <p class="mb-3"><strong>What is dissociation?</strong> Dissociation is a natural mental process where we disconnect from our thoughts, feelings, memories, or sense of identity. While it can be a normal response to stress or trauma, it sometimes becomes a persistent pattern that interferes with daily life and relationships.</p>
+            
+            <p class="mb-3"><strong>Why might you dissociate?</strong> Your mind may have learned to "check out" as a way to cope with overwhelming experiences. This was likely protective at one time, helping you survive difficult situations. However, what once kept you safe might now be limiting your ability to engage fully with life.</p>
+            
+            <p class="mb-3"><strong>The purpose of this homework:</strong> This worksheet will help you explore your relationship with dissociation and develop practical grounding skills. Grounding techniques help you stay connected to the present moment - knowing who you are, where you are, and when you are. These skills can help you feel more in control and present in your daily life.</p>
+            
+            <p><strong>Remember:</strong> There's no judgment here. We're simply exploring what works and what doesn't work for you anymore.</p>
+        </div>
+
+        <!-- Self-Reflection Questions -->
+        <section class="mb-8">
+            <h2 class="section-header text-2xl font-semibold">Self-Reflection Questions</h2>
+            
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Is this strategy still helpful?</h3>
+                <p class="text-sm mb-3">Reflect on whether dissociation currently serves you or if it might be limiting your ability to live fully.</p>
+                <textarea class="journal-input" data-key="strategy-helpful" placeholder="Your thoughts..." rows="3"></textarea>
+            </div>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Does it keep you safe? Does it let you live your life fully? What are the costs?</h3>
+                <textarea class="journal-input" data-key="safety-costs" placeholder="Consider both benefits and costs..." rows="4"></textarea>
+            </div>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Is it actually dangerous in the here and now?</h3>
+                <p class="text-sm mb-3">Think about your current environment and situation. Are you safe right now?</p>
+                <textarea class="journal-input" data-key="current-danger" placeholder="Assess your present safety..." rows="3"></textarea>
+            </div>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Do you have skills to deal with a scared body?</h3>
+                <textarea class="journal-input" data-key="body-skills" placeholder="What skills do you have or need to develop..." rows="3"></textarea>
+            </div>
+        </section>
+
+        <!-- Recognizing When You're Not Grounded -->
+        <section class="mb-8">
+            <h2 class="section-header text-2xl font-semibold">How Do You Know If You're Not Grounded?</h2>
+
+            <div class="info-box">
+                <h3 class="text-lg font-semibold mb-3">Common Signs of Dissociation:</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><strong>Disappearing:</strong> Checking out, zoning out, feeling drugged</li>
+                    <li><strong>Depersonalization:</strong> Feeling like you aren't real</li>
+                    <li><strong>Derealization:</strong> Feeling like the world isn't real</li>
+                    <li><strong>Switching:</strong> Feeling like someone else is taking over</li>
+                    <li><strong>Age regression:</strong> Feeling smaller, younger, or helpless</li>
+                    <li><strong>Hypervigilance:</strong> Being constantly on guard</li>
+                    <li><strong>Numbing:</strong> Feeling separated from your body</li>
+                    <li><strong>Flashbacks:</strong> Re-experiencing trauma through emotions or sensations</li>
+                </ul>
+            </div>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Personal Signs of Being Ungrounded</h3>
+                <p class="text-sm mb-3">List three feelings or thoughts that let you know you aren't grounded:</p>
+                <div class="space-y-3">
+                    <input type="text" class="journal-input" data-key="ungrounded-sign-1" placeholder="1. Your first sign..." />
+                    <input type="text" class="journal-input" data-key="ungrounded-sign-2" placeholder="2. Your second sign..." />
+                    <input type="text" class="journal-input" data-key="ungrounded-sign-3" placeholder="3. Your third sign..." />
+                </div>
+            </div>
+        </section>
+
+        <!-- Grounding Techniques -->
+        <section class="mb-8">
+            <h2 class="section-header text-2xl font-semibold">Understanding Grounding Through Your Five Senses</h2>
+
+            <div class="info-box">
+                <p class="mb-3"><strong>Grounding helps you stay oriented to:</strong></p>
+                <ul class="space-y-1 mb-4">
+                    <li><strong>Who you are:</strong> An adult in an adult body (person)</li>
+                    <li><strong>Where you are:</strong> Your location in the present (place)</li>
+                    <li><strong>When you are:</strong> The present day and date (time)</li>
+                </ul>
+                <p>Using your five senses is one of the most effective ways to ground yourself because it connects you directly to the present moment.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <div class="journal-box">
+                    <h3 class="font-semibold mb-2">👁️ Sight</h3>
+                    <p class="text-sm mb-2"><strong>How it helps:</strong> Visual grounding brings attention to your immediate environment.</p>
+                    <p class="text-sm"><strong>Try this:</strong> Turn on lights, look around deliberately, describe objects in detail.</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="font-semibold mb-2">👂 Sound</h3>
+                    <p class="text-sm mb-2"><strong>How it helps:</strong> Hearing grounds you through present-moment sounds.</p>
+                    <p class="text-sm"><strong>Try this:</strong> Listen to sounds around you, speak aloud to hear your adult voice.</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="font-semibold mb-2">👃 Smell</h3>
+                    <p class="text-sm mb-2"><strong>How it helps:</strong> Scents quickly trigger present-moment awareness.</p>
+                    <p class="text-sm"><strong>Try this:</strong> Use essential oils, menthol products, or meaningful scents.</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="font-semibold mb-2">👅 Taste</h3>
+                    <p class="text-sm mb-2"><strong>How it helps:</strong> Strong tastes cut through dissociative fog.</p>
+                    <p class="text-sm"><strong>Try this:</strong> Mints, gum, grapefruit juice, or fresh herbs.</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="font-semibold mb-2">✋ Touch</h3>
+                    <p class="text-sm mb-2"><strong>How it helps:</strong> Physical sensations connect you to your body.</p>
+                    <p class="text-sm"><strong>Try this:</strong> Keep textured objects, massage arms/legs, pet animals.</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="font-semibold mb-2">🔄 Combining Senses</h3>
+                    <p class="text-sm mb-2"><strong>Why it works:</strong> Multiple senses create stronger grounding.</p>
+                    <p class="text-sm"><strong>Try this:</strong> Hold textured object while looking around and naming what you see.</p>
+                </div>
+            </div>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Your Personal Grounding Toolkit</h3>
+                <p class="text-sm mb-3">Based on what you've learned, what specific tools and techniques work best for you?</p>
+                <textarea class="journal-input" data-key="personal-toolkit" placeholder="List your preferred grounding tools..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Five Countdown Exercise -->
+        <section class="mb-8">
+            <h2 class="section-header text-2xl font-semibold">The 5-4-3-2-1 Grounding Technique</h2>
+            
+            <div class="info-box">
+                <p class="mb-3"><strong>What it is:</strong> A simple technique you can use anywhere when feeling disconnected.</p>
+                <p><strong>How to practice:</strong> Work through each step slowly, fully engaging each sense.</p>
+            </div>
+
+            <div class="grid md:grid-cols-1 gap-6">
+                <div class="journal-box">
+                    <h3 class="text-lg font-semibold mb-3">🖐️ 5 Things You Can Touch</h3>
+                    <p class="text-sm mb-2"><strong>Instructions:</strong> Get up and touch five objects, saying what you feel.</p>
+                    <p class="text-sm"><strong>Examples:</strong> "This table is smooth and cool." "My sweater is soft and fuzzy."</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="text-lg font-semibold mb-3">👀 4 Things You Can See</h3>
+                    <p class="text-sm mb-2"><strong>Instructions:</strong> Look around and identify four specific things, describing them in detail.</p>
+                    <p class="text-sm"><strong>Examples:</strong> "A red coffee mug with a chip." "Sunlight through blinds."</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="text-lg font-semibold mb-3">👂 3 Things You Can Hear</h3>
+                    <p class="text-sm mb-2"><strong>Instructions:</strong> Listen for three distinct sounds from different distances.</p>
+                    <p class="text-sm"><strong>Examples:</strong> "My breathing." "Cars outside." "Refrigerator humming."</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="text-lg font-semibold mb-3">👃 2 Things You Can Smell</h3>
+                    <p class="text-sm mb-2"><strong>Instructions:</strong> Take deep breaths and identify two scents.</p>
+                    <p class="text-sm"><strong>Examples:</strong> "Coffee." "Hand lotion." "Fresh air from window."</p>
+                </div>
+
+                <div class="journal-box">
+                    <h3 class="text-lg font-semibold mb-3">👅 1 Thing You Can Taste</h3>
+                    <p class="text-sm mb-2"><strong>Instructions:</strong> Notice any taste or intentionally taste something.</p>
+                    <p class="text-sm"><strong>Examples:</strong> "Mint from gum." "Cool water." Even noticing no taste counts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Reflection -->
+        <section class="mb-8">
+            <h2 class="section-header text-2xl font-semibold">Personal Reflection</h2>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">What helps you feel grounded?</h3>
+                <p class="text-sm mb-3">Think about specific activities, places, or techniques that help you stay present:</p>
+                <textarea class="journal-input" data-key="grounding-helpers" placeholder="What helps you feel present and connected..." rows="4"></textarea>
+            </div>
+
+            <div class="journal-box">
+                <h3 class="text-lg font-medium mb-3">Your Next Steps</h3>
+                <p class="text-sm mb-3">What will you do this week to practice staying grounded?</p>
+                <textarea class="journal-input" data-key="next-steps" placeholder="Your commitment to practice..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pt-8 border-t border-gray-200">
+            <p class="text-sm text-gray-500">
+                Remember: You have the strength to stay present. Take it one moment at a time.
+            </p>
+            <p class="text-xs text-gray-400 mt-2">
+                Collaborating Wellness | Janice LaFountaine, MS, LMFT
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Auto-save functionality
+        document.addEventListener('input', function(e) {
+            if (e.target.matches('textarea[data-key], input[data-key]')) {
+                const key = e.target.getAttribute('data-key');
+                localStorage.setItem('grounding_' + key, e.target.value);
+            }
+        });
+
+        // Load saved data
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('textarea[data-key], input[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                const saved = localStorage.getItem('grounding_' + key);
+                if (saved !== null) {
+                    element.value = saved;
+                }
+            });
+        });
+
+        // Share function
+        function shareHomework() {
+            const currentUrl = window.location.href;
+            
+            if (navigator.share) {
+                // Use native Web Share API if available (mobile devices)
+                navigator.share({
+                    title: 'Dissociation: You\'re Grounded! - Homework',
+                    text: 'A therapeutic homework worksheet for grounding techniques and dissociation management by Janice LaFountaine, MS, LMFT',
+                    url: currentUrl
+                }).then(() => {
+                    console.log('Shared successfully');
+                }).catch((error) => {
+                    console.log('Error sharing:', error);
+                    fallbackShare(currentUrl);
+                });
+            } else {
+                // Fallback for desktop browsers
+                fallbackShare(currentUrl);
+            }
+        }
+
+        function fallbackShare(url) {
+            // Create a temporary input element to copy the URL
+            const tempInput = document.createElement('input');
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                alert('✅ Link copied to clipboard! You can now share this homework worksheet.');
+            } catch (err) {
+                // If copy fails, show a modal with the URL
+                const shareText = `Share this homework worksheet:\n\n${url}\n\nDissociation: You're Grounded!\nBy Janice LaFountaine, MS, LMFT - Collaborating Wellness`;
+                
+                if (confirm('Copy this link to share the homework worksheet:\n\n' + url + '\n\nClick OK to copy, or Cancel to close.')) {
+                    // Try copying again
+                    tempInput.select();
+                    document.execCommand('copy');
+                }
+            }
+            
+            document.body.removeChild(tempInput);
+        }
+
+        // Export function
+        function exportData() {
+            const data = {};
+            document.querySelectorAll('textarea[data-key], input[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                const value = element.value.trim();
+                if (value) {
+                    data[key] = value;
+                }
+            });
+
+            const date = new Date().toLocaleDateString();
+            let content = `DISSOCIATION: YOU'RE GROUNDED! - HOMEWORK RESPONSES\n`;
+            content += `Date: ${date}\n`;
+            content += `Therapist: Janice LaFountaine, MS, LMFT\n`;
+            content += `Collaborating Wellness\n`;
+            content += `${'='.repeat(60)}\n\n`;
+
+            const sections = {
+                'SELF-REFLECTION QUESTIONS': {
+                    'strategy-helpful': 'Is this strategy still helpful?',
+                    'safety-costs': 'Does it keep you safe? What are the costs?',
+                    'current-danger': 'Is it actually dangerous in the here and now?',
+                    'body-skills': 'Do you have skills to deal with a scared body?'
+                },
+                'PERSONAL SIGNS & REFLECTION': {
+                    'ungrounded-sign-1': 'Personal Sign 1',
+                    'ungrounded-sign-2': 'Personal Sign 2',
+                    'ungrounded-sign-3': 'Personal Sign 3',
+                    'personal-toolkit': 'Personal Grounding Toolkit',
+                    'grounding-helpers': 'What helps you feel grounded',
+                    'next-steps': 'Next steps this week'
+                }
+            };
+
+            Object.entries(sections).forEach(([sectionTitle, sectionKeys]) => {
+                let hasContent = false;
+                let sectionText = `${sectionTitle}\n${'-'.repeat(sectionTitle.length)}\n\n`;
+                
+                Object.entries(sectionKeys).forEach(([key, label]) => {
+                    if (data[key]) {
+                        hasContent = true;
+                        sectionText += `• ${label}:\n  ${data[key]}\n\n`;
+                    }
+                });
+                
+                if (hasContent) {
+                    content += sectionText + '\n';
+                }
+            });
+
+            content += `${'='.repeat(50)}\n`;
+            content += `Remember: You have the strength to stay present.\n`;
+            content += `Generated: ${date}`;
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Grounding_Homework_${date.replace(/\//g, '-')}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('✅ Responses exported successfully!');
+        }
+
+        // Clear function
+        function clearData() {
+            if (confirm('Are you sure you want to clear all responses? This cannot be undone.')) {
+                document.querySelectorAll('textarea[data-key], input[data-key]').forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    element.value = '';
+                    localStorage.removeItem('grounding_' + key);
+                });
+                alert('✅ All responses cleared.');
+            }
+        }
+    </script>
+</body>
+</html>
