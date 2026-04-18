@@ -43,6 +43,12 @@
         .journal-input:focus, textarea:focus, input:focus, select:focus { outline: none; border-color: var(--color-dusty-rose); box-shadow: 0 0 0 3px rgba(216, 162, 160, 0.25); }
         .btn { transition: all 0.2s ease; font-weight: 500; font-family: var(--font-body); border-radius: var(--radius-pill); padding: 0.5rem 1.125rem; font-size: 0.875rem; cursor: pointer; border: none; }
         .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+        .btn-primary { background-color: var(--color-dusty-rose); color: var(--color-charcoal); }
+        .btn-primary:hover { background-color: var(--color-iris); color: #ffffff; }
+        .btn-ghost { background-color: var(--color-whisper-grey); color: var(--color-charcoal); }
+        .btn-ghost:hover { background-color: var(--color-luminous-pearl); }
+        .btn-danger { background-color: #ffffff; color: var(--color-dusty-rose); border: 1px solid var(--color-dusty-rose); }
+        .btn-danger:hover { background-color: var(--color-blush-lavender); }
         .brand-header { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; }
         .brand-header img { height: 6rem; width: auto; margin: 0 auto 0.75rem; border-radius: var(--radius-pill); box-shadow: var(--shadow-soft); }
         .brand-header .practice-name { font-family: var(--font-heading); color: var(--color-charcoal); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: -0.01em; }
@@ -72,10 +78,10 @@
         </header>
 
         <div class="no-print flex flex-wrap gap-3 mb-6 justify-end">
-            <button onclick="shareHomework()" class="btn" style="background-color: var(--color-dusty-rose); color: var(--color-charcoal);">🔗 Share</button>
-            <button onclick="exportData()" class="btn" style="background-color: var(--color-whisper-grey); color: var(--color-charcoal);">📤 Export</button>
-            <button onclick="window.print()" class="btn" style="background-color: var(--color-whisper-grey); color: var(--color-charcoal);">🖨️ Print</button>
-            <button onclick="clearData()" class="btn" style="background-color: #ffffff; color: var(--color-dusty-rose); border: 1px solid var(--color-dusty-rose);">🗑️ Clear All</button>
+            <button onclick="shareHomework()" class="btn btn-primary">🔗 Share</button>
+            <button onclick="exportData()" class="btn btn-ghost">📤 Export</button>
+            <button onclick="window.print()" class="btn btn-ghost">🖨️ Print</button>
+            <button onclick="clearData()" class="btn btn-danger">🗑️ Clear All</button>
         </div>
 
         <section class="mb-8 text-center">
@@ -258,6 +264,29 @@
         <aside class="info-box text-center">
             <p class="italic" style="color: var(--color-charcoal);">Remember: you have the strength to stay present. Take it one moment at a time.</p>
         </aside>
+
+        <!-- Companion Resources -->
+        <section class="mb-8">
+            <h2 class="section-header text-2xl sm:text-3xl font-semibold mt-12">Companion Resources</h2>
+            <p class="mb-4 leading-relaxed">These are some of the voices that have been companions to this work. None of them is homework. Take what serves. Leave what doesn't.</p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-2">Books</h3>
+            <ul style="padding-left: 1.25rem; line-height: 1.8;">
+                <li><span style="font-style: italic;">Anchored: How to Befriend Your Nervous System Using Polyvagal Theory</span> by Deb Dana — the most accessible polyvagal book. The concept of <span style="font-style: italic;">glimmers</span> — tiny moments of safety — comes from here, and pairs beautifully with grounding practice.</li>
+                <li><span style="font-style: italic;">Healing Trauma: A Pioneering Program for Restoring the Wisdom of Your Body</span> by Peter Levine — the client-facing companion to his clinical work. Somatic-first, body-trusting.</li>
+                <li><span style="font-style: italic;">8 Keys to Safe Trauma Recovery</span> by Babette Rothschild — explicit pacing and titration. Reliably gentle, and careful never to push past what your system can hold.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mt-6 mb-2">Online practices</h3>
+            <ul style="padding-left: 1.25rem; line-height: 1.8;">
+                <li><a href="https://pete-walker.com">Pete Walker</a> — his <span style="font-style: italic;">13 Steps for Managing Flashbacks</span> is a free one-page article that has lived on many refrigerators.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mt-6 mb-2">Organizations</h3>
+            <ul style="padding-left: 1.25rem; line-height: 1.8;">
+                <li><a href="https://cptsdfoundation.org">CPTSD Foundation</a> — peer support groups, free daily recovery calls, and a resource hub for complex trauma.</li>
+            </ul>
+        </section>
 
         <footer class="brand-footer">
             <p>A client handout from <strong>Janice LaFountaine, LMFT</strong></p>
